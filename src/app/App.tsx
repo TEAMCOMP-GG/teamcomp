@@ -1,13 +1,28 @@
 import React from 'react';
-import { Counter } from './components/Counter';
+import styled from 'styled-components';
+import { theme, ThemeProps } from './theme';
+import Home from './components/Home';
 
-function App() {
+const StyledApp = styled.div.attrs((theme: ThemeProps) => {
+  return {
+    style: {
+      backgroundColor: theme.primary,
+      color: theme.textPrimary,
+    },
+  };
+})`
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+`;
+
+function App(): JSX.Element {
+  const defaultTheme = 'light';
   return (
-    <div className="App">
-      <header className="App-header">
-        <Counter />
-      </header>
-    </div>
+    <StyledApp className="App" theme={theme[defaultTheme]}>
+      <Home />
+    </StyledApp>
   );
 }
 
